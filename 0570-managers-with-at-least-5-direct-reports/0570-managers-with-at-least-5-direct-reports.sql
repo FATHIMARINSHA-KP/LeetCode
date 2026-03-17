@@ -1,8 +1,9 @@
-# Write your MySQL query statement below
-SELECT e.name 
-FROM employee e
-JOIN employee m
-ON e.id = m.managerId
-GROUP BY e.id,e.name
-HAVING COUNT(m.id) >=5;
-
+-- Write your PostgreSQL query statement below
+SELECT 
+  name FROM Employee
+  WHERE id IN(
+    SELECT managerId
+    FROM Employee
+    GROUP BY managerId
+    HAVING COUNT(*)>= 5
+  );
