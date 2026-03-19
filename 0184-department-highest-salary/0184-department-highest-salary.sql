@@ -1,16 +1,22 @@
 -- Write your PostgreSQL query statement below
-WITH Maxsalary AS (
-    SELECT departmentId,MAX(salary) AS Max_salary
-    FROM Employee 
+WITH maxsalary AS(
+    SELECT departmentId,MAX(salary) AS max_salary
+    FROM Employee
     GROUP BY departmentId
 )
-SELECT e.name AS employee ,
+SELECT e.name AS Employee,
 d.name AS Department,
 e.salary
 FROM Employee e
-JOIN  Maxsalary m
-ON e.departmentId = m.DepartmentId
-AND e.salary = m.Max_salary
+JOIN maxsalary m
+ON e.departmentId = m.departmentId
+AND e.salary = m.max_salary
 JOIN Department d
 ON e.departmentId = d.id;
+
+
+
+
+
+
 
